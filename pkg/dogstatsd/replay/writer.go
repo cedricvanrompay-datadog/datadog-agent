@@ -19,6 +19,7 @@ import (
 	"github.com/DataDog/zstd"
 	"github.com/golang/protobuf/proto"
 	"github.com/spf13/afero"
+	"go.uber.org/atomic"
 
 	// Refactor relevant bits
 	"github.com/DataDog/datadog-agent/pkg/config"
@@ -64,13 +65,14 @@ var CapPool = sync.Pool{
 
 // TrafficCaptureWriter allows writing dogstatsd traffic to a file.
 type TrafficCaptureWriter struct {
-	File     afero.File
-	zWriter  *zstd.Writer
-	writer   *bufio.Writer
-	Traffic  chan *CaptureBuffer
-	Location string
-	shutdown chan struct{}
-	ongoing  bool
+	File      afero.File
+	zWriter   *zstd.Writer
+	writer    *bufio.Writer
+	Traffic   chan *CaptureBuffer
+	Location  string
+	shutdown  chan struct{}
+	ongoing   bool
+	accepting *atomic.Bool
 
 	sharedPacketPoolManager *packets.PoolManager
 	oobPacketPoolManager    *packets.PoolManager
@@ -86,6 +88,7 @@ func NewTrafficCaptureWriter(depth int) *TrafficCaptureWriter {
 	return &TrafficCaptureWriter{
 		Traffic:     make(chan *CaptureBuffer, depth),
 		taggerState: make(map[int32]string),
+		accepting:   atomic.NewBool(false),
 	}
 }
 
@@ -225,6 +228,7 @@ func (tc *TrafficCaptureWriter) Capture(l string, d time.Duration, compressed bo
 	tc.shutdown = shutdown
 
 	tc.ongoing = true
+	tc.accepting.Store(true)
 
 	err = tc.WriteHeader()
 	if err != nil {
@@ -261,6 +265,7 @@ process:
 			}
 		case <-shutdown:
 			log.Debug("Capture shutting down")
+			tc.accepting.Store(false)
 			break process
 		}
 	}
@@ -332,14 +337,13 @@ func (tc *TrafficCaptureWriter) StopCapture() {
 
 // Enqueue enqueues a capture buffer so it's written to file.
 func (tc *TrafficCaptureWriter) Enqueue(msg *CaptureBuffer) bool {
-	qd := false
 
-	if tc.IsOngoing() {
+	if tc.accepting.Load() {
 		tc.Traffic <- msg
-		qd = true
+		return true
 	}
 
-	return qd
+	return false
 }
 
 // RegisterSharedPoolManager registers the shared pool manager with the TrafficCaptureWriter.
