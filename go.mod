@@ -140,6 +140,7 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.12.2
+	github.com/pulumi/pulumi/sdk/v3 v3.36.0
 	github.com/richardartoul/molecule v0.0.0-20210914193524-25d8911bb85b
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/samuel/go-zookeeper v0.0.0-20190923202752-2cc03de413da
@@ -155,6 +156,7 @@ require (
 	github.com/tinylib/msgp v1.1.6
 	github.com/twmb/murmur3 v1.1.6
 	github.com/urfave/negroni v1.0.0
+	github.com/vboulineau/pulumi-definitions v0.0.0-20220721093527-5f8edae096c7
 	github.com/vishvananda/netlink v1.2.0-beta.0.20220404152918-5e915e014938
 	github.com/vishvananda/netns v0.0.0-20211101163701-50045581ed74
 	github.com/vmihailenco/msgpack/v4 v4.3.12
@@ -399,13 +401,42 @@ require github.com/netsampler/goflow2 v1.1.0
 
 require (
 	github.com/DataDog/aptly v1.5.0 // indirect
+	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/agnivade/levenshtein v1.0.1 // indirect
 	github.com/cavaliergopher/grab/v3 v3.0.1 // indirect
+	github.com/cheggaaa/pb v1.0.29 // indirect
+	github.com/djherbis/times v1.2.0 // indirect
+	github.com/emirpasic/gods v1.12.0 // indirect
+	github.com/gofrs/uuid v4.0.0+incompatible // indirect
+	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
+	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
+	github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd // indirect
 	github.com/libp2p/go-reuseport v0.1.0 // indirect
+	github.com/mitchellh/go-ps v1.0.0 // indirect
+	github.com/nxadm/tail v1.4.8 // indirect
+	github.com/opentracing/basictracer-go v1.0.0 // indirect
+	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/outcaste-io/ristretto v0.2.0 // indirect
+	github.com/pkg/term v1.1.0 // indirect
+	github.com/pulumi/pulumi-aws/sdk/v5 v5.7.2 // indirect
+	github.com/rogpeppe/go-internal v1.8.1 // indirect
+	github.com/sabhiram/go-gitignore v0.0.0-20180611051255-d3107576ba94 // indirect
+	github.com/sergi/go-diff v1.1.0 // indirect
+	github.com/src-d/gcfg v1.4.0 // indirect
+	github.com/texttheater/golang-levenshtein v0.0.0-20191208221605-eb6844b05fc6 // indirect
+	github.com/tweekmonster/luser v0.0.0-20161003172636-3fa38070dbd7 // indirect
+	github.com/uber/jaeger-client-go v2.22.1+incompatible // indirect
+	github.com/uber/jaeger-lib v2.2.0+incompatible // indirect
 	github.com/vektah/gqlparser/v2 v2.4.5 // indirect
+	github.com/xanzy/ssh-agent v0.2.1 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
+	gopkg.in/src-d/go-billy.v4 v4.3.2 // indirect
+	gopkg.in/src-d/go-git.v4 v4.13.1 // indirect
+	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
+	gopkg.in/warnings.v0 v0.1.2 // indirect
 	k8s.io/apiextensions-apiserver v0.23.5 // indirect
+	lukechampine.com/frand v1.4.2 // indirect
+	sourcegraph.com/sourcegraph/appdash v0.0.0-20190731080439-ebfcffb1b5c0 // indirect
 )
 
 require github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.38.0-rc.3
