@@ -96,6 +96,9 @@ func (p *ProcessCheck) RealTimeName() string { return config.RTProcessCheckName 
 // RealTime indicates if this check only runs in real-time mode.
 func (p *ProcessCheck) RealTime() bool { return false }
 
+// ShouldSaveLastRun indicates if the output from the last run should be saved for use in flares
+func (p *ProcessCheck) ShouldSaveLastRun() bool { return true }
+
 // Run runs the ProcessCheck to collect a list of running processes and relevant
 // stats for each. On most POSIX systems this will use a mix of procfs and other
 // OS-specific APIs to collect this information. The bulk of this collection is
